@@ -1,5 +1,5 @@
 import "./Task.css"
-import { useStore } from "../../store"
+import { useStore, State } from "../../store"
 import trash from "../../assets/trash.png"
 
 interface Props {
@@ -15,12 +15,12 @@ export const Task: React.FC<Props> = ({ title }) => {
         <div 
             draggable
             className="Task"
-            onDragStart={() => setDraggedTask(task?.title)}
+            onDragStart={() => setDraggedTask(task?.title || "")}
         >
             <div>{task?.title}</div>
             <div className="BottomWrapper">
                 <img src={trash} alt="delete task" onClick={() => deleteTask(title)}/>
-                <div className={task?.state}>{task?.state}</div>
+                <div className={task?.state || State.PLANNED}>{task?.state}</div>
             </div>
         </div>
     )

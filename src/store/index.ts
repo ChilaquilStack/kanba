@@ -3,7 +3,9 @@ import { Task } from '../components/Task/Task';
 import { devtools } from "zustand/middleware";
 
 export enum State {
-    DONE,
+    DONE = "DONE",
+    ONGOING = "ONGOING",
+    PLANNED = "PLANNED"
 }
 
 type Task = {

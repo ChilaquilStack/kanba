@@ -2,7 +2,7 @@ import { useStore, State } from "../../store"
 import { Task } from "../Task"
 import "./Column.css"
 import { shallow } from "zustand/shallow"
-import {useState} from "react";
+import { useState } from "react";
 
 interface Props {
     state: State
@@ -12,6 +12,7 @@ export const Column: React.FC<Props> = ({ state })=> {
     
     const [ text, setText ] = useState('');
     const [ open, setOpen ] = useState(false);
+    const [ drop, setDrop ] = useState(false);
 
     const tasks = useStore(
         store => store.tasks.filter(task => task.state === state),
@@ -27,11 +28,17 @@ export const Column: React.FC<Props> = ({ state })=> {
 
     return(
         <div 
-            className="column" 
+            className={"column " + { drop: drop ? "drop" : "" }}
             onDragOver={e => {
-                e.preventDefault();
+                setDrop(true);
+                e.preventDefault()
+            }}
+            onDragLeave={e => {
+                setDrop(false)
+                e.preventDefault()
             }}
             onDrop={() => {
+                setDrop(false)
                 moveTask({title: draggedTask, state});
                 setDraggedTask('')
             }}
