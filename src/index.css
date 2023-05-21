@@ -1,0 +1,14 @@
+:root {
+  --GRAY: #333;
+  --GRAY-DARK: #222;
+  --GRAY-LIGHT: #CCC;
+  --ONGOING: #98c1d9;
+  --DONE: #ee6c4d;
+  font-family: Helvetica;
+}
+
+body {
+  margin: 0;
+  padding: 0 ;
+  box-sizing: border-box;
+}
